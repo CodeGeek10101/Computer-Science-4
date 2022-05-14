@@ -1,0 +1,18 @@
+# For this level, your hero doesn't fight.
+# Command your archers to focus fire on the enemy with the most health!
+while True:
+    friends = hero.findFriends()
+    for i in range(len(friends)):
+        friend = friends[i]
+        target = None 
+        maxHealth = 0 
+        enemyIndex = 0
+        enemies = hero.findEnemies()
+        while enemyIndex < len(enemies):
+            enemy = enemies[enemyIndex]
+            if enemy.health > maxHealth: 
+                maxHealth = enemy.health 
+                target = enemy 
+            enemyIndex += 1
+        if target:
+            hero.command(friend, "attack", target)
