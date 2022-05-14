@@ -1,0 +1,30 @@
+# Collect 80 gold
+while hero.gold <= 80:
+    gold = hero.findNearest(hero.findItems())
+    if gold:
+        hero.move(gold.pos);
+# Build 4 soldiers to use as bait
+for i in range(4):
+    hero.summon("soldier")
+# Send your soldiers into position
+points = []
+points[0] = { "x": 13, "y": 73 }
+points[1] = { "x": 51, "y": 73 }
+points[2] = { "x": 51, "y": 53 }
+points[3] = { "x": 90, "y": 52 }
+friends = hero.findFriends()
+
+# Use range to make an array to loop over.
+# Match the friends to the points and command them to move
+while True:
+    friends = hero.findFriends()
+    for j in range(len(friends)):
+        point = points[j]
+        friend = friends[j]
+        enemy = hero.findNearestEnemy()
+        if enemy and enemy.team == "ogres" and friend.distanceTo(enemy) < 5:
+            pass
+            hero.command(friend, "attack", enemy)
+        else:
+            pass
+        hero.command(friend, "move", point)
